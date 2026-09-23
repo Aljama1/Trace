@@ -15,7 +15,7 @@ export class TicketService {
   /**
    * Genera un PDF profesional con el formato de ticket de restaurante.
    */
-  async generarTicketPDF(data: FacturaLegal) {
+  async generarTicketPDF(data: FacturaLegal): Promise<jsPDF> {
     const doc = new jsPDF({
       unit: 'mm',
       format: [80, 150] // Formato típico de impresora térmica (80mm de ancho)
@@ -33,10 +33,10 @@ export class TicketService {
     y += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
-    doc.text('Restaurante TFG - APP Comandas', width / 2, y, { align: 'center' });
+    doc.text('Trace · Demo Hostelería', width / 2, y, { align: 'center' });
     
     y += 4;
-    doc.text('CIF: B12345678', width / 2, y, { align: 'center' });
+    doc.text('Demostración técnica (sin validez fiscal)', width / 2, y, { align: 'center' });
     
     y += 8;
     doc.line(margin, y, width - margin, y);
@@ -48,7 +48,7 @@ export class TicketService {
     y += 5;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
-    doc.text(`${this.translate.instant('TICKET.FACTURA')}: ${data.numeroFactura}`, margin, y);
+    doc.text(`Serie / número de factura: ${data.numeroFactura}`, margin, y);
     
     y += 5;
     const lang = this.translate.currentLang === 'en' ? 'en-US' : 'es-ES';
@@ -116,10 +116,26 @@ export class TicketService {
     y += 4;
     doc.text(this.translate.instant('TICKET.IVA_INCLUIDO'), width / 2, y, { align: 'center' });
 
+    if (data.hashActual) {
+      y += 6;
+      doc.line(margin, y - 2, width - margin, y - 2);
+      doc.setFontSize(6.5);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Hash de integridad SHA-256:', width / 2, y + 1.5, { align: 'center' });
+      y += 5;
+      doc.setFont('courier', 'normal');
+      doc.setFontSize(5);
+      const hashLines = doc.splitTextToSize(data.hashActual, width - (margin * 2));
+      doc.text(hashLines, width / 2, y, { align: 'center' });
+    }
+
     // --- ACCIÓN ---
     // En web lo descargamos o abrimos en pestaña nueva
-    const blob = doc.output('blob');
-    const url = URL.createObjectURL(blob);
-    window.open(url, '_blank');
+    if (typeof window !== 'undefined' && window.open) {
+      const blob = doc.output('blob');
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank');
+    }
+    return doc;
   }
 }
