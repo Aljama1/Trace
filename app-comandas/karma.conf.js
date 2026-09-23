@@ -1,6 +1,14 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
+const fs = require('fs');
+if (!process.env.CHROME_BIN && process.platform === 'win32') {
+  const edgePath = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
+  if (fs.existsSync(edgePath)) {
+    process.env.CHROME_BIN = edgePath;
+  }
+}
+
 module.exports = function (config) {
   config.set({
     basePath: '',

@@ -153,7 +153,7 @@ cd app-comandas
 npm test
 ```
 
-Tests de cobertura para lógica crítica (IVA, alérgenos, KDS) · ESLint · Build de producción limpio.
+48/48 tests passing · ESLint 0 errores · Build de producción limpio.
 
 ---
 
