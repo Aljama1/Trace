@@ -1,4 +1,4 @@
-﻿/*
+/*
  * App Global CSS
  * ----------------------------------------------------------------------------
  * Put style rules here that you want to apply globally. These styles are for
@@ -61,7 +61,7 @@
   --neon-green: #00ff88;
 }
 
-body.dark {
+html.ion-palette-dark body, body.dark {
   /* DARK THEME */
   --dash-bg: #0b0e14;
   --dash-panel: #1a1f2b;
@@ -288,7 +288,7 @@ ion-alert.admin-app-alert {
   }
 }
 
-body.dark ion-alert.admin-app-alert {
+html.ion-palette-dark body ion-alert.admin-app-alert, body.dark ion-alert.admin-app-alert {
   .alert-wrapper {
     background: var(--dash-panel) !important;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--dash-border) !important;

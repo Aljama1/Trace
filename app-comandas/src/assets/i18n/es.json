@@ -281,7 +281,7 @@
     "EFECTIVO": "Efectivo",
     "TARJETA": "Tarjeta",
     "TPV": "TPV Web",
-    "VERIFACTU": "Facturación Legal Inalterable (Veri*factu)",
+    "VERIFACTU": "Facturación Inalterable (Registro SHA-256)",
     "GENERANDO": "Generando...",
     "COBRAR_MESA": "Cobrar Mesa",
     "MOSTRAR_MENOS": "Mostrar menos",
@@ -292,7 +292,7 @@
     "ANTIGUA": "Antigua"
   },
   "HISTORIAL_FACTURAS": {
-    "TITULO": "Historial de Facturas (Veri*factu)",
+    "TITULO": "Historial de Facturas (Integridad SHA-256)",
     "CARGANDO": "Cargando facturas...",
     "SIN_FACTURAS": "No se han emitido facturas todavía.",
     "MESA": "Mesa:",

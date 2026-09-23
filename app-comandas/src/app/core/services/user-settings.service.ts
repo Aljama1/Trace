@@ -26,11 +26,13 @@ export class UserSettingsService {
 
   constructor() {
     // Aplicar el estado inicial al DOM
+    this.document.documentElement.classList.toggle('ion-palette-dark', this.isDark());
     this.document.body.classList.toggle('dark', this.isDark());
 
     // Sincronizar cambios de Dark Mode
     effect(() => {
       const dark = this.isDark();
+      this.document.documentElement.classList.toggle('ion-palette-dark', dark);
       this.document.body.classList.toggle('dark', dark);
       localStorage.setItem('trace-dark-mode', String(dark));
     });

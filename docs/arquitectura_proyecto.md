@@ -1,6 +1,6 @@
 # Arquitectura del Proyecto: Trace (App Comandas)
 
-Esta aplicación ha sido desarrollada siguiendo los estándares más recientes de **Angular (v20)** y **Ionic 8**, priorizando el rendimiento, la escalabilidad, la accesibilidad y el cumplimiento normativo (RD 1007/2023 — Veri\*factu).
+Esta aplicación ha sido desarrollada siguiendo los estándares más recientes de **Angular (v20)** y **Ionic 8**, priorizando el rendimiento, la escalabilidad, la accesibilidad y la integridad de datos (mecanismos de inalterabilidad inspirados en el RD 1007/2023).
 
 > 📐 **Apoyo visual.** Los diagramas que acompañan esta arquitectura (capas Clean Architecture, flujo de datos B2C en tiempo real, modelo Entidad-Relación, secuencia de emisión de factura y cronograma Gantt real) se han centralizado en el anexo [`diagramas.md`](diagramas.md).
 
@@ -102,12 +102,12 @@ El "corazón" de la aplicación es la conexión con **Firebase Cloud Firestore**
 | **jsPDF + jspdf-autotable** | Generación de informes (cierre Z, factura) en cliente. |
 | **TypeScript 5.9** | Lenguaje de tipado fuerte para un código más robusto. |
 
-## 5. Módulo de Facturación y Cumplimiento (Veri\*factu — RD 1007/2023)
-La aplicación incorpora un módulo fiscal que simula los requisitos técnicos de Veri\*factu de la AEAT:
+## 5. Módulo de Facturación e Integridad de Datos (Demostración de trazabilidad)
+La aplicación incorpora un módulo de facturación que simula los mecanismos técnicos de trazabilidad e integridad inspirados en el RD 1007/2023:
 *   **Numeración correlativa inalterable:** Contador global persistido en `metadatos/contadores_facturas`, con regla de Firestore que solo permite incrementos `+1` (no admite rebobinado).
 *   **Encadenamiento criptográfico:** Cada factura calcula un hash SHA-256 sobre sus campos críticos y el hash de la factura anterior, formando una cadena auditable.
 *   **Append-only:** Las reglas de Firestore prohíben `update` y `delete` sobre la colección `facturas`, garantizando integridad histórica.
-*   **Generación de PDF:** Documento de factura con desglose de IVA y QR informativo (modo demostración — la conexión real con la AEAT se documenta como línea de trabajo futuro).
+*   **Generación de PDF:** Documento de factura con desglose de IVA y hash SHA-256 de trazabilidad (modo demostración — sin validez fiscal oficial).
 
 > La integración productiva con los servicios de la AEAT está fuera del alcance del TFG por requerir un certificado de representante y alta como obligado tributario; ver `trabajo_futuro.md`.
 

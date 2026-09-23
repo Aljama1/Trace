@@ -2,7 +2,7 @@
 
 **Proyecto de Fin de Grado · DAM 2.º curso · Manuel Aljama Muñoz · 2026**
 
-Trace es una aplicación híbrida (PWA + app nativa Android) que digitaliza el ciclo completo de una comanda en bares y restaurantes, con **filtrado dinámico de alérgenos** y facturación conforme al RD 1007/2023 (Veri\*factu).
+Trace es una aplicación híbrida (PWA + app nativa Android) que digitaliza el ciclo completo de una comanda en bares y restaurantes, con **filtrado dinámico de alérgenos** y demostración técnica de facturación inalterable (colecciones append-only y encadenamiento SHA-256).
 
 ---
 
@@ -12,7 +12,7 @@ Trace es una aplicación híbrida (PWA + app nativa Android) que digitaliza el c
 |---|---|
 | **B2C — Comensal** | Escanea QR de mesa · Configura 14 alérgenos EU · Carta filtrada en tiempo real · Pedido sin registro · Seguimiento de estado · Botón "Pedir la cuenta" |
 | **B2B — Staff** | Panel KDS Cocina / KDS Barra · Gestión de pedidos en tiempo real · Backoffice de carta (CRUD + turnos) · Dashboard de métricas · Cierre Z (PDF) · Generador de QR por mesa |
-| **Fiscal** | Factura SHA-256 encadenada · Numeración correlativa inalterable · Colección *append-only* en Firestore · PDF con desglose de IVA |
+| **Integridad** | Factura SHA-256 encadenada · Numeración correlativa inalterable · Colección *append-only* en Firestore · PDF con desglose de IVA |
 
 ---
 
@@ -41,7 +41,7 @@ Trace es una aplicación híbrida (PWA + app nativa Android) que digitaliza el c
 ## Estructura del repositorio
 
 ```
-TFG/
+Trace/
 ├── app-comandas/            # Código fuente Angular/Ionic
 │   ├── src/
 │   │   ├── app/
@@ -153,7 +153,7 @@ cd app-comandas
 npm test
 ```
 
-28/28 tests passing · ESLint 0 errores · Build de producción limpio.
+48/48 tests passing · ESLint 0 errores · Build de producción limpio.
 
 ---
 
