@@ -87,7 +87,7 @@ service cloud.firestore {
 
     // ─── Facturas ─────────────────────────────────────────────────────
     // Solo staff. Append-only: una vez creada, la factura NO se puede
-    // modificar ni borrar (integridad VeriFactu).
+    // modificar ni borrar (integridad y trazabilidad histórica).
     match /facturas/{facturaId} {
       allow read: if isStaff();
       allow create: if isStaff();
@@ -100,7 +100,7 @@ service cloud.firestore {
       allow write: if isStaff();
     }
 
-    // ─── Metadatos (contador VeriFactu) ───────────────────────────────
+    // ─── Metadatos (contador correlativo inalterable) ───────────────────
     // Solo staff. La actualización está restringida a incrementos de +1
     // del contador, evitando que un admin malicioso rebobine la cadena.
     match /metadatos/{docId} {

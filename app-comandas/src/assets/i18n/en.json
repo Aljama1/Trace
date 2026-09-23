@@ -281,7 +281,7 @@
     "EFECTIVO": "Cash",
     "TARJETA": "Card",
     "TPV": "Web TPV",
-    "VERIFACTU": "Unalterable Legal Billing (Veri*factu)",
+    "VERIFACTU": "Unalterable Invoicing (SHA-256 Log)",
     "GENERANDO": "Generating...",
     "COBRAR_MESA": "Charge Table",
     "MOSTRAR_MENOS": "Show less",
@@ -292,7 +292,7 @@
     "ANTIGUA": "Stale"
   },
   "HISTORIAL_FACTURAS": {
-    "TITULO": "Invoice History (Veri*factu)",
+    "TITULO": "Invoice History (SHA-256 Integrity)",
     "CARGANDO": "Loading invoices...",
     "SIN_FACTURAS": "No invoices have been issued yet.",
     "MESA": "Table:",
