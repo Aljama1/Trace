@@ -37,3 +37,6 @@ app-comandas/gen-icon.mjs
 # Documentación local (no publicar en repo)
 docs/documentacion/
 
+# Grabaciones y demos locales
+output/
+
