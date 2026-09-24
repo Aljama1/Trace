@@ -8,12 +8,12 @@ import { Comanda } from '../models/comanda.model';
 import { getTranslation } from '../models/common.model';
 
 /**
- * Servicio especializado en la generación de facturas legales con encadenamiento VeriFactu.
+ * Servicio especializado en la generación de facturas con encadenamiento SHA-256 e integridad técnica.
  *
  * Responsabilidades:
  *  1. Calcular el total de consumición de una mesa
  *  2. Generar número de factura correlativo con serie
- *  3. Encadenar hashes SHA-256 para cumplir con VeriFactu
+ *  3. Encadenar hashes SHA-256 para integridad de registros
  *  4. Realizar transacción atómica (factura + contador)
  *  5. Marcar comandas como pagadas al finalizar
  *
@@ -125,7 +125,7 @@ export class FacturacionService {
           const fechaExpedicion = Date.now();
           const hashAnterior = datosContador.ultimoHash;
 
-          // Hash encadenado (VeriFactu) computado con el total fresco
+          // Hash encadenado SHA-256 computado con el total fresco
           const hashActual = await generarHashFactura(
             numeroFormateado,
             fechaExpedicion,

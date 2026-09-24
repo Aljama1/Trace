@@ -346,7 +346,7 @@ export class AdminComandaService implements OnDestroy {
   /**
    * Genera una factura para todas las comandas activas de una mesa.
    *
-   * Delega toda la lógica de facturación (cálculos, encadenamiento VeriFactu,
+   * Delega toda la lógica de facturación (cálculos, encadenamiento SHA-256,
    * transacciones) a FacturacionService para separar responsabilidades.
    *
    * @param idMesa - ID de la mesa
