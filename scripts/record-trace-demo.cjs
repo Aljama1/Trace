@@ -367,7 +367,7 @@ function extractSegment(inputWebm, outputMp4, startTimeSec, endTimeSec, clickOff
     await injectCursor(pageComensal);
     await injectSubtitleBar(pageComensal);
 
-    await showSubtitle(pageComensal, 'Plato seguro para celíacos', 400);
+    await showSubtitle(pageComensal, 'Plato compatible con el filtro', 400);
 
     // Seleccionar Chuletón de Ávila
     const chuletonBtn = pageComensal.locator('button.menu-item:has-text("Chuletón")').first();
@@ -437,13 +437,17 @@ function extractSegment(inputWebm, outputMp4, startTimeSec, endTimeSec, clickOff
     await injectSubtitleBar(pageStaff);
 
     // Rellenar credenciales discretamente
-    await pageStaff.locator('ion-input[name="email"] input, input[name="email"]').first().fill(staffEmail);
-    await pageStaff.locator('ion-input[name="password"] input, input[name="password"]').first().fill(staffPassword);
+    const emailInput = pageStaff.locator('ion-input[name="email"] input').first();
+    const passInput = pageStaff.locator('ion-input[name="password"] input').first();
+    await emailInput.fill(staffEmail);
+    await passInput.fill(staffPassword);
+    await pageStaff.waitForTimeout(400);
     
-    await moveAndClick(pageStaff, 'ion-button.btn-acceso, button[type="submit"]', 'Acceso Staff', { postClickDelay: 700 }, {
+    const btnAcceso = pageStaff.locator('ion-button.btn-acceso').first();
+    await moveAndClick(pageStaff, btnAcceso, 'Acceso Staff', { force: true, postClickDelay: 800 }, {
       record: () => timings.clip2.clicks.push(Date.now() - t0Staff)
     });
-    await pageStaff.waitForURL(url => !url.toString().includes('/login'), { timeout: 10000 });
+    await pageStaff.waitForURL(url => !url.toString().includes('/login'), { timeout: 15000 });
     await injectCursor(pageStaff);
     await injectSubtitleBar(pageStaff);
 
@@ -542,6 +546,8 @@ function extractSegment(inputWebm, outputMp4, startTimeSec, endTimeSec, clickOff
 
   } catch (err) {
     console.error('Error durante la grabación:', err);
+    await browser.close().catch(() => {});
+    process.exit(1);
   } finally {
     const rawComensalVideo = pageComensal.video();
     const rawStaffVideo = pageStaff.video();
